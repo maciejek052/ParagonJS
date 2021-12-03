@@ -2,8 +2,15 @@
     max-width: 30%;
     margin: auto; 
 }
+
 .tabela
 {
     max-width: 80%;
     margin: auto; 
+}
+
+.formularzEdycji {
+    max-width: 30%;
+    margin: auto; 
+    visibility: hidden;
 }

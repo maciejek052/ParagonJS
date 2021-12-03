@@ -44,7 +44,7 @@ function dodajDoTabeli(id, produkt) {
   cena.innerHTML = produkt.cena;
   suma.innerHTML = produkt.suma;
   usun.innerHTML = "<button class='btn btn-danger' onclick='usunProdukt(this)'>Usuń</button>";
-  edytuj.innerHTML = "<button class='btn btn-warning'>Edytuj</button>";
+  edytuj.innerHTML = "<button class='btn btn-warning' onclick='edytujProdukt(this)'>Edytuj</button>";
 };
 
 // funkcja odpowiedzialna za wczytanie produktów z local storage
@@ -64,9 +64,24 @@ function usunProdukt(prod) {
   // poprawienie wyświetlania lp
   for (var i = 1; i <= listaProduktow.length; i++)
     tabela.rows[i].cells[0].innerHTML = i;
+  // location.reload(); // zamiast powyższego fora można użyć tego i się przeładuje strona
 }
 
 // funkcja odpowiedzialna za edycję produktów
+const formularzEdycji = document.getElementById("formularzEdycji");
 function edytujProdukt(prod) {
-  
+  document.getElementsByClassName("formularzEdycji")[0].style.visibility = "visible";
+  var edytowanyId = prod.parentNode.parentNode.rowIndex - 1;
+  var produktEdytowany = listaProduktow[edytowanyId];
+  formularzEdycji.nazwa.value = produktEdytowany.nazwa;
+  formularzEdycji.ilosc.value = produktEdytowany.ilosc;
+  formularzEdycji.cena.value = produktEdytowany.cena;
+  formularzEdycji.onsubmit = (event) => {
+    produktEdytowany.nazwa = formularzEdycji.nazwa.value;
+    produktEdytowany.ilosc = formularzEdycji.ilosc.value;
+    produktEdytowany.cena = formularzEdycji.cena.value;
+    produktEdytowany.suma = formularzEdycji.ilosc.value * formularzEdycji.cena.value;
+    listaProduktow[edytowanyId] = produktEdytowany;
+    localStorage.paragon = JSON.stringify(listaProduktow);
+  }
 }
