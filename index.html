@@ -12,7 +12,8 @@
 </head>
 
 <body>
-    <form name="formularz" method="post" id="addForm">
+    </br>
+    <form id="formularz" onsubmit="nowyProdukt()">
         <div class="form-group">
             <label for="nazwa">Nazwa</label>
             <input type="text" class="form-control" id="nazwa" name="nazwa">
@@ -25,16 +26,16 @@
             <label for="cena">Cena</label>
             <input type="number" class="form-control" step="0.01" id="cena" name="cena">
         </div>
-        <input type="submit" class="btn btn-primary" id="dodajprodukt" value="Dodaj">
-    </form>
-
+        <input type="submit" class="btn btn-primary" value="Dodaj">
+    </form></br>
     <table class="table" id="tabela">
         <tr>
-            <th scope="col">lp</th>
-            <th scope="col">nazwa</th>
-            <th scope="col">ilość</th>
-            <th scope="col">cena</th>
-            <th scope="col">suma</th>
+            <th>lp</th>
+            <th>nazwa</th>
+            <th>ilość</th>
+            <th>cena</th>
+            <th>suma</th>
+            <th></th>
             <th></th>
         </tr>
     </table>
