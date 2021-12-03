@@ -28,6 +28,16 @@ function nowyProdukt() {
   localStorage.paragon = JSON.stringify(listaProduktow);
 }
 
+// funkcja odpowiedzialna za wyświetlenie kosztu zakupów
+let sumaCalosci = 0;
+function suma() {
+  listaProduktow.forEach(produkt => {
+    sumaCalosci += produkt.suma;
+  });
+  document.getElementById("suma").innerHTML = sumaCalosci;
+}
+suma();
+
 // funkcja odpowiedzialna za wyświetlenie produktu w tabeli na stronie
 function dodajDoTabeli(id, produkt) {
   let wiersz = tabela.insertRow();
@@ -85,3 +95,4 @@ function edytujProdukt(prod) {
     localStorage.paragon = JSON.stringify(listaProduktow);
   }
 }
+
