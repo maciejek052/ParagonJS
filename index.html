@@ -13,33 +13,36 @@
 
 <body>
     </br>
-    <form id="formularz" onsubmit="nowyProdukt()">
-        <div class="form-group">
-            <label for="nazwa">Nazwa</label>
-            <input type="text" class="form-control" id="nazwa" name="nazwa" required>
-        </div>
-        <div class="form-group">
-            <label for="ilosc">Ilość</label>
-            <input type="number" class="form-control" step="1" id="ilosc" name="ilosc" required>
-        </div>
-        <div class="form-group">
-            <label for="cena">Cena</label>
-            <input type="number" class="form-control" step="0.01" id="cena" name="cena" required>
-        </div>
-        <input type="submit" class="btn btn-primary" value="Dodaj">
-    </form></br>
-    <table class="table" id="tabela">
-        <tr>
-            <th>lp</th>
-            <th>nazwa</th>
-            <th>ilość</th>
-            <th>cena</th>
-            <th>suma</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </table>
-
+    <div class="formularz">
+        <form id="formularz" onsubmit="nowyProdukt()" class="form-horizontal">
+            <div class="form-group">
+                <label for="nazwa">Nazwa</label>
+                <input type="text" class="form-control" id="nazwa" name="nazwa" required>
+            </div>
+            <div class="form-group">
+                <label for="ilosc">Ilość</label>
+                <input type="number" class="form-control" step="1" id="ilosc" name="ilosc" required>
+            </div>
+            <div class="form-group">
+                <label for="cena">Cena</label>
+                <input type="number" class="form-control" step="0.01" id="cena" name="cena" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Dodaj">
+        </form></br>
+    </div>
+    <div class="tabela">
+        <table class="table" id="tabela">
+            <tr>
+                <th>lp</th>
+                <th>nazwa</th>
+                <th>ilość</th>
+                <th>cena</th>
+                <th>suma</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
     <script src="index.js"></script>
 </body>
 

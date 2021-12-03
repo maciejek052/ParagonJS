@@ -61,5 +61,12 @@ function usunProdukt(prod) {
   document.getElementById("tabela").deleteRow(usuwany);
   listaProduktow.splice(usuwany - 1, 1);
   localStorage.paragon = JSON.stringify(listaProduktow);
+  // poprawienie wyświetlania lp
+  for (var i = 1; i <= listaProduktow.length; i++)
+    tabela.rows[i].cells[0].innerHTML = i;
 }
 
+// funkcja odpowiedzialna za edycję produktów
+function edytujProdukt(prod) {
+  
+}
