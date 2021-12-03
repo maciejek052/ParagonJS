@@ -15,7 +15,7 @@ class Produkt {
   };
 };
 
-let listaProduktow = []; 
+let listaProduktow = [];
 const tabela = document.getElementById("tabela");
 document.body.onload = wczytajLocalStorage();
 
@@ -43,7 +43,7 @@ function dodajDoTabeli(id, produkt) {
   ilosc.innerHTML = produkt.ilosc;
   cena.innerHTML = produkt.cena;
   suma.innerHTML = produkt.suma;
-  usun.innerHTML = "<button class='btn btn-danger'>Usuń</button>";
+  usun.innerHTML = "<button class='btn btn-danger' onclick='usunProdukt(this)'>Usuń</button>";
   edytuj.innerHTML = "<button class='btn btn-warning'>Edytuj</button>";
 };
 
@@ -54,3 +54,12 @@ function wczytajLocalStorage() {
     listaProduktow.forEach((produkt, id) => dodajDoTabeli(id, produkt));
   }
 }
+
+// funkcja odpowiedzialna za usuwanie produktów
+function usunProdukt(prod) {
+  var usuwany = prod.parentNode.parentNode.rowIndex;
+  document.getElementById("tabela").deleteRow(usuwany);
+  listaProduktow.splice(usuwany - 1, 1);
+  localStorage.paragon = JSON.stringify(listaProduktow);
+}
+
