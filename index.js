@@ -29,14 +29,14 @@ function nowyProdukt() {
 }
 
 // funkcja odpowiedzialna za wyświetlenie kosztu zakupów
-let sumaCalosci = 0;
-function suma() {
+function sumuj() {
+  let sumaCalosci = 0;
   listaProduktow.forEach(produkt => {
     sumaCalosci += produkt.suma;
   });
-  document.getElementById("suma").innerHTML = sumaCalosci;
+  document.getElementById("suma").innerHTML = parseFloat(sumaCalosci).toFixed( 2 );;
 }
-suma();
+sumuj();
 
 // funkcja odpowiedzialna za wyświetlenie produktu w tabeli na stronie
 function dodajDoTabeli(id, produkt) {
@@ -68,13 +68,13 @@ function wczytajLocalStorage() {
 // funkcja odpowiedzialna za usuwanie produktów
 function usunProdukt(prod) {
   var usuwany = prod.parentNode.parentNode.rowIndex;
-  document.getElementById("tabela").deleteRow(usuwany);
+  tabela.deleteRow(usuwany);
   listaProduktow.splice(usuwany - 1, 1);
   localStorage.paragon = JSON.stringify(listaProduktow);
   // poprawienie wyświetlania lp
   for (var i = 1; i <= listaProduktow.length; i++)
     tabela.rows[i].cells[0].innerHTML = i;
-  // location.reload(); // zamiast powyższego fora można użyć tego i się przeładuje strona
+  sumuj();
 }
 
 // funkcja odpowiedzialna za edycję produktów
@@ -96,3 +96,35 @@ function edytujProdukt(prod) {
   }
 }
 
+// funkcja odpowiedzialna za zmianę kolejności produktów
+let sortujRosnaco = []
+function sortuj(n) {
+  /* funkcja sort sortuje od najmniejszej do największej wartości, dlatego
+  kiedy użytkownik spróbuje posortować jeszcze raz tablica się odwróci */
+  sortujRosnaco[n] == false ? sortujRosnaco[n] = true : sortujRosnaco[n] = false;
+  if (n == 0) {
+    // sortowanie po lp, odwracamy tablicę
+    listaProduktow.reverse();
+  }
+  if (n == 1) {
+    listaProduktow.sort((a, b) => a.nazwa.localeCompare(b.nazwa));
+  }
+  if (n == 2) {
+    listaProduktow.sort((a, b) => a.ilosc - b.ilosc);
+  }
+  if (n == 3) {
+    listaProduktow.sort((a, b) => a.cena - b.cena);
+  }
+  if (n == 4) {
+    listaProduktow.sort((a, b) => a.suma - b.suma);
+  }
+
+  if (sortujRosnaco[n] && n!=0) 
+    listaProduktow.reverse();
+  // usuwamy starą tabelę i rysujemy nową
+  for (var i = 0; i < listaProduktow.length; i++) {
+    tabela.deleteRow(1)
+  }
+  listaProduktow.forEach((produkt, id) => dodajDoTabeli(id, produkt));
+  localStorage.paragon = JSON.stringify(listaProduktow);
+}
