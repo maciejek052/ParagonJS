@@ -34,7 +34,7 @@ function sumuj() {
   listaProduktow.forEach(produkt => {
     sumaCalosci += produkt.suma;
   });
-  document.getElementById("suma").innerHTML = parseFloat(sumaCalosci).toFixed( 2 );;
+  document.getElementById("suma").innerHTML = parseFloat(sumaCalosci).toFixed(2);
 }
 sumuj();
 
@@ -51,8 +51,8 @@ function dodajDoTabeli(id, produkt) {
   lp.innerHTML = id + 1;
   nazwa.innerHTML = produkt.nazwa;
   ilosc.innerHTML = produkt.ilosc;
-  cena.innerHTML = produkt.cena;
-  suma.innerHTML = produkt.suma;
+  cena.innerHTML = parseFloat(produkt.cena).toFixed(2);
+  suma.innerHTML = parseFloat(produkt.suma).toFixed(2);
   usun.innerHTML = "<button class='btn btn-danger' onclick='usunProdukt(this)'>Usuń</button>";
   edytuj.innerHTML = "<button class='btn btn-warning' onclick='edytujProdukt(this)'>Edytuj</button>";
 };
@@ -119,7 +119,7 @@ function sortuj(n) {
     listaProduktow.sort((a, b) => a.suma - b.suma);
   }
 
-  if (sortujRosnaco[n] && n!=0) 
+  if (sortujRosnaco[n] && n != 0)
     listaProduktow.reverse();
   // usuwamy starą tabelę i rysujemy nową
   for (var i = 0; i < listaProduktow.length; i++) {
